@@ -1,0 +1,320 @@
+﻿<Fluent:RibbonWindow x:Class="Filmy.MainWindow"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+										 Title="Filmy"
+                     Icon="Resources/Filmoteka.ico"
+                     WindowStartupLocation="CenterScreen"
+                     Height="850" Width="1100"
+										 Loaded="RibbonWindow_Loaded"
+										 Closed="RibbonWindow_Closed">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Fluent:Ribbon x:Name="ribbon"
+                   AutomaticStateManagement="True"                       
+                   IsQuickAccessToolBarVisible="False"
+                   Grid.Row="0">
+			<Fluent:Ribbon.Menu>
+				<Fluent:Backstage>
+					<Fluent:BackstageTabControl>
+						<Fluent:BackstageTabItem Header="Datový sklad"
+                                     Fluent:KeyTip.Keys="D">
+
+						</Fluent:BackstageTabItem>
+
+						<Fluent:BackstageTabItem Header="Archivace"
+                                     Fluent:KeyTip.Keys="A">
+
+						</Fluent:BackstageTabItem>
+
+						<Fluent:BackstageTabItem Header="Vytisknout"
+                                     Fluent:KeyTip.Keys="T">
+
+						</Fluent:BackstageTabItem>
+
+						<Fluent:BackstageTabItem Header="Exportovat"
+                                     Fluent:KeyTip.Keys="E">
+
+						</Fluent:BackstageTabItem>
+
+						<Fluent:BackstageTabItem Header="Internet"
+                                     Fluent:KeyTip.Keys="I">
+
+						</Fluent:BackstageTabItem>
+
+						<Fluent:SeparatorTabItem />
+						<Fluent:Button x:Name="btnClose"
+                           Header="Zavřít"
+                           Fluent:KeyTip.Keys="K"
+													 Icon="Zavri.ico"
+													 Click="btnClose_Click"/>
+
+					</Fluent:BackstageTabControl>
+				</Fluent:Backstage>
+			</Fluent:Ribbon.Menu>
+
+			<Fluent:Ribbon.ToolBarItems>
+				<Fluent:TextBox x:Name="txtSearch"
+                        Width="200" />
+				<Fluent:SeparatorTabItem Width="3" />
+				<Fluent:Button x:Name="btnSearch"
+                       Size="Small"
+                       Icon="/Filmy;component/Resources/Search.ico" />
+				<Fluent:SeparatorTabItem Width="3" />
+			</Fluent:Ribbon.ToolBarItems>
+
+			<Fluent:RibbonTabItem Header="Filmotéka" >
+
+				<Fluent:RibbonGroupBox Header="Filmy">
+					<Fluent:ToggleButton x:Name="btnSeznam"
+															 Header="Seznam filmů"
+															 LargeIcon="/Filmy;component/Resources/Movie.ico"
+															 Icon="/Filmy;component/Resources/Movie.ico"
+															 Fluent:KeyTip.Keys="F"
+															 GroupName="Group1"
+															 IsChecked="True">
+						<Fluent:ToggleButton.ToolTip>
+							<Fluent:ScreenTip Title="Seznam filmů"
+                                Image="/Filmy;component/Resources/Movie.ico"
+                                Text="Seznam filmů podle nastavených filtrů.&#x0a;Umožňuje editaci a přehrávání filmů z disku."
+                                DisableReason=" "/>
+						</Fluent:ToggleButton.ToolTip>
+					</Fluent:ToggleButton>
+
+					<Fluent:Button x:Name="btnPrehrat"
+                         Header="Přehrát film"
+                         LargeIcon="/Filmy;component/Resources/MediaPlayer.ico"
+                         Icon="/Filmy;component/Resources/MediaPlayer.ico"
+                         Fluent:KeyTip.Keys="P" >
+						<Fluent:Button.ToolTip>
+							<Fluent:ScreenTip Title="Přehrát film"
+                                Image="/Filmy;component/Resources/MediaPlayer.ico"
+                                Text="Spustí přehravač s filmem z disku.&#x0a;Film musí být uložen na disku počítače -> medium HDD...."
+                                DisableReason=" "/>
+						</Fluent:Button.ToolTip>
+					</Fluent:Button>
+
+					<Fluent:ToggleButton x:Name="btnNew"
+															 Header="Nový"
+															 Size = "Middle"
+															 Icon="/Filmy;component/Resources/AddEntry.ico"
+															 Fluent:KeyTip.Keys="N" >
+						<Fluent:ToggleButton.ToolTip>
+							<Fluent:ScreenTip Title="Nový"
+                                Image="/Filmy;component/Resources/AddEntry.ico"
+                                Text="Vložení nového filmu do seznamu filmů."
+                                DisableReason=" " />
+						</Fluent:ToggleButton.ToolTip>
+					</Fluent:ToggleButton>
+
+					<Fluent:ToggleButton x:Name="btnEdit"
+															 Header="Upravit"
+															 Size = "Middle"
+															 Icon="/Filmy;component/Resources/EditEntry.ico"
+															 Fluent:KeyTip.Keys="E" >
+						<Fluent:ToggleButton.ToolTip>
+							<Fluent:ScreenTip Title="Upravit"
+                                Image="/Filmy;component/Resources/EditEntry.ico"
+                                Text="Úprava dat filmu ze seznamu filmů."
+                                DisableReason=" " />
+						</Fluent:ToggleButton.ToolTip>
+					</Fluent:ToggleButton>
+
+					<Fluent:ToggleButton x:Name="btnDelete"
+															 Header="Vymazat"
+															 Size = "Middle"
+															 Icon="/Filmy;component/Resources/DeleteEntry.ico"
+															 Fluent:KeyTip.Keys="D" >
+						<Fluent:ToggleButton.ToolTip>
+							<Fluent:ScreenTip Title="Vymazat"
+                                Image="/Filmy;component/Resources/DeleteEntry.ico"
+                                Text="Vymaže film ze seznamu filmů."
+                                DisableReason=" " />
+						</Fluent:ToggleButton.ToolTip>
+					</Fluent:ToggleButton>
+				</Fluent:RibbonGroupBox>
+
+
+				<Fluent:RibbonGroupBox Header="Číselníky - Filtry">
+					<Fluent:ToggleButton x:Name="btnKatalog"
+															 Header="Katalog"
+															 LargeIcon="/Filmy;component/Resources/Katalog.ico"
+															 Icon="/Filmy;component/Resources/Katalog.ico"
+															 Fluent:KeyTip.Keys="K"
+															 GroupName="Group1">
+						<Fluent:ToggleButton.ToolTip>
+							<Fluent:ScreenTip Title="Katalog filmů"
+                                Image="/Filmy;component/Resources/Katalog.ico"
+                                Text="Filtr katalogů nastavíte zatržením výběru filtru.&#x0a;Je-li vybráno více katalogů, použije se jako filtr jen první z nich."/>
+						</Fluent:ToggleButton.ToolTip>
+					</Fluent:ToggleButton>
+
+					<Fluent:ToggleButton x:Name="btnZanr"
+															 Header="Žánr"
+															 LargeIcon="/Filmy;component/Resources/Zanr.ico"
+															 Icon="/Filmy;component/Resources/Zanr.ico"
+															 Fluent:KeyTip.Keys="Ž"
+															 GroupName="Group1">
+						<Fluent:ToggleButton.ToolTip>
+							<Fluent:ScreenTip Title="Zánr filmu"
+                                Image="/Filmy;component/Resources/Zanr.ico"
+                                Text="Filtr žánrů nastavíte zatržením výběru filtru.&#x0a;Je-li vybráno více žánrů, použije se jako filtr jen první z nich."/>
+						</Fluent:ToggleButton.ToolTip>
+					</Fluent:ToggleButton>
+
+					<Fluent:ToggleButton x:Name="btnMedia"
+															 Header="Medium"
+															 LargeIcon="/Filmy;component/Resources/Medium.ico"
+															 Icon="/Filmy;component/Resources/Medium.ico"
+															 Size="Middle" 
+															 Fluent:KeyTip.Keys="M"
+															 GroupName="Group1">
+						<Fluent:ToggleButton.ToolTip>
+							<Fluent:ScreenTip Title="Medium - fyzické uložení filmu"
+                                Image="/Filmy;component/Resources/Medium.ico"
+                                Text="Filtr media nastavíte zatržením výběru media.&#x0a;Je-li vybráno více medií, použije se jako filtr jen první z nich."/>
+						</Fluent:ToggleButton.ToolTip>
+					</Fluent:ToggleButton>
+
+					<Fluent:ToggleButton x:Name="btnZdroj"
+															 Header="Zdroj"
+															 LargeIcon="/Filmy;component/Resources/Zdroj.ico"
+															 Icon="/Filmy;component/Resources/Zdroj.ico"
+															 Size="Middle" 
+															 Fluent:KeyTip.Keys="Z"
+															 GroupName="Group1">
+						<Fluent:ToggleButton.ToolTip>
+							<Fluent:ScreenTip Title="Zdroj - odkud byl pořízen"
+                                Image="/Filmy;component/Resources/Zdroj.ico"
+                                Text="Filtr zdroje nastavíte zatržením výběru zdroje.&#x0a;Je-li vybráno více zdrojů, použije se jako filtr jen první z nich."/>
+						</Fluent:ToggleButton.ToolTip>
+					</Fluent:ToggleButton>
+
+					<Fluent:ToggleButton x:Name="btnPujčeno"
+															 Header="Půjčeno"
+															 LargeIcon="/Filmy;component/Resources/Pujceno.ico"
+															 Icon="/Filmy;component/Resources/Pujceno.ico"
+															 Size="Middle" 
+															 Fluent:KeyTip.Keys="U"
+															 GroupName="Group1">
+						<Fluent:ToggleButton.ToolTip>
+							<Fluent:ScreenTip Title="Komu bylo půjčeno"
+                                Image="/Filmy;component/Resources/Pujceno.ico"
+                                Text="Filtr půjček nastavíte zatržením výběru půjček.&#x0a;Je-li vybráno více půjček, použije se jako filtr jen první z nich."/>
+						</Fluent:ToggleButton.ToolTip>
+					</Fluent:ToggleButton>
+				</Fluent:RibbonGroupBox>
+
+				<Fluent:RibbonGroupBox Header="Obrázky">
+					<Fluent:ToggleButton x:Name="btnObrazek"
+															 Header="Zvětšit obrázek"
+															 LargeIcon="/Filmy;component/Resources/Obrazek.ico"
+															 Icon="/Filmy;component/Resources/Obrazek.ico"
+															 Fluent:KeyTip.Keys="OO"
+															 GroupName="Group1">
+						<Fluent:ToggleButton.ToolTip>
+							<Fluent:ScreenTip Title="Zvětšit / zmenšit obrázek"
+                                Image="/Filmy;component/Resources/Obrazek.ico"
+                                Text="Zvětší obrázek na celou obrazovku. Zvětšený obrázek skryje."
+                                DisableReason=" "/>
+						</Fluent:ToggleButton.ToolTip>
+					</Fluent:ToggleButton>
+
+					<Fluent:ToggleButton x:Name="btnLoadObr"
+															 Header="Načíst"
+															 Size = "Middle"
+															 Icon="/Filmy;component/Resources/AddEntry.ico"
+															 Fluent:KeyTip.Keys="ON" >
+						<Fluent:ToggleButton.ToolTip>
+							<Fluent:ScreenTip Title="Načíst obrázek"
+                                Image="/Filmy;component/Resources/AddEntry.ico"
+                                Text="Načte obrázek z disku."
+                                DisableReason=" "/>
+						</Fluent:ToggleButton.ToolTip>
+					</Fluent:ToggleButton>
+
+					<Fluent:ToggleButton x:Name="btnSaveObr"
+															 Header="Uložit"
+															 Size = "Middle"
+															 Icon="/Filmy;component/Resources/EditEntry.ico"
+															 Fluent:KeyTip.Keys="OE" >
+						<Fluent:ToggleButton.ToolTip>
+							<Fluent:ScreenTip Title="Uložit obrázek"
+                                Image="/Filmy;component/Resources/EditEntry.ico"
+                                Text="Uloží obrázek na disk."
+                                DisableReason=" "/>
+						</Fluent:ToggleButton.ToolTip>
+					</Fluent:ToggleButton>
+
+					<Fluent:ToggleButton x:Name="btnDeleteObr"
+															 Header="Vymazat"
+															 Size = "Middle"
+															 Icon="/Filmy;component/Resources/DeleteEntry.ico"
+															 Fluent:KeyTip.Keys="OD" >
+						<Fluent:ToggleButton.ToolTip>
+							<Fluent:ScreenTip Title="Vymazat obrázek"
+                                Image="/Filmy;component/Resources/DeleteEntry.ico"
+                                Text="Vymaže obrázek z databáze."
+                                DisableReason=" "/>
+						</Fluent:ToggleButton.ToolTip>
+					</Fluent:ToggleButton>
+				</Fluent:RibbonGroupBox>
+
+				<Fluent:RibbonGroupBox Header="Navigace">
+					<Fluent:RibbonToolBar>
+						<Fluent:RibbonToolBar.LayoutDefinitions>
+							<Fluent:RibbonToolBarLayoutDefinition>
+								<Fluent:RibbonToolBarRow>
+									<!-- sem dostat obrázek -->
+								</Fluent:RibbonToolBarRow>
+
+								<Fluent:RibbonToolBarRow>
+									<Fluent:RibbonToolBarControlDefinition Target="btnTop" />
+									<Fluent:RibbonToolBarControlDefinition Target="btnPreview" />
+									<Fluent:RibbonToolBarControlDefinition Target="btnNext" />
+									<Fluent:RibbonToolBarControlDefinition Target="btnEnd" />
+								</Fluent:RibbonToolBarRow>
+							</Fluent:RibbonToolBarLayoutDefinition>
+						</Fluent:RibbonToolBar.LayoutDefinitions>
+
+						<Fluent:Button x:Name="btnTop"
+                           LargeIcon="/Filmy;component/Resources/Wztop.ico"
+                           Icon="/Filmy;component/Resources/Wztop.ico">
+						</Fluent:Button>
+						<Fluent:Button x:Name="btnPreview"
+                           LargeIcon="/Filmy;component/Resources/Wzback.ico"
+                           Icon="/Filmy;component/Resources/Wzback.ico">
+						</Fluent:Button>
+						<Fluent:Button x:Name="btnNext"
+                           LargeIcon="/Filmy;component/Resources/Wznext.ico"
+                           Icon="/Filmy;component/Resources/Wznext.ico">
+						</Fluent:Button>
+						<Fluent:Button x:Name="btnEnd"
+                           LargeIcon="/Filmy;component/Resources/Wzend.ico"
+                           Icon="/Filmy;component/Resources/Wzend.ico">
+						</Fluent:Button>
+					</Fluent:RibbonToolBar>
+				</Fluent:RibbonGroupBox>
+			</Fluent:RibbonTabItem>
+		</Fluent:Ribbon>
+
+		<DockPanel x:Name="mainDock"
+							 Grid.Row="1" />
+
+		<Fluent:StatusBar x:Name="statusBar"
+                      Grid.Row="2"
+                      Height="23">
+			<Fluent:StatusBarItem x:Name="statusBarFiltr"
+                            Title="Filtr"
+                            HorizontalAlignment="Left">
+				<TextBlock x:Name="statusBarFiltrText"
+                   Text="Filtr:" />
+			</Fluent:StatusBarItem>
+			<Separator HorizontalAlignment="Left" />
+		</Fluent:StatusBar>
+	</Grid>
+</Fluent:RibbonWindow>
